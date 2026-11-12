@@ -184,6 +184,17 @@
   .open-phone .more .olink:last-child { visibility:hidden; }
   .open-notes.open-phone .more { display:none; }
   .apply .cta::after { content:""; display:block; width:85%; height:1px; background:#cccccc; margin:18.65px auto 0; }
+  .apply .row.q > .choices { flex:0 0 auto; display:inline-flex; gap:0; background:#fff; border:1px solid #cfcfcf; border-radius:999px; padding:3px; }
+  .apply .row.q > .choices label { flex:0 0 auto; height:30px; min-width:52px; padding:0 14px; border:none; border-radius:999px; background:transparent; box-shadow:none; font-size:10.5pt; }
+  .apply .row.q > .choices label:has(input:checked) { background:#2b2b2b; color:#fff; box-shadow:none; }
+  .apply .row.q > .choices label:has(input:checked)::before { display:none; }
+  .apply .form input[type=text], .apply .form input[type=tel] { height:40px; }
+  .apply .row.q { margin:6px 0 12px; }
+  .apply .row.q > .choices { width:128px; }
+  .apply .row.q > .choices label { flex:1; min-width:0; padding:0 6px; }
+  .apply .row.q > .choices { height:40px; box-sizing:border-box; padding:4px; background:#e4e4e4; border:none; }
+  .apply .row.q > .choices label { height:32px; color:#555; }
+  .apply .row.q > .choices label:has(input:checked) { color:#fff; box-shadow:0 1px 3px rgba(0,0,0,.2); }
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -281,19 +292,19 @@ fbq('track', 'PageView');
       <p class="cta">רוצים להצטרף? השאירו פרטים ונחזור אליכם לתיאום ראיון. זה לוקח פחות מדקה&nbsp;:)</p>
       <form class="form" id="f">
         <div class="row two"><div><label>שם פרטי</label><input type="text" id="fname"></div><div><label>שם משפחה</label><input type="text" id="lname"></div><div class="age"><label style="white-space:nowrap">גיל <span class="hint" style="font-size:9pt"><bdi dir="ltr">+18</bdi></span></label><input type="text" inputmode="numeric" maxlength="2" id="age"></div></div><div class="err" id="err" style="margin-top:-4px;margin-bottom:6px">נא למלא שם פרטי ושם משפחה</div><div class="err" id="err-age" style="margin-top:-4px;margin-bottom:6px">נא למלא גיל</div>
-        <div class="row q"><label>ניסיון קודם במלצרות או בבר?</label>
+        <div class="row two"><div><label>טלפון</label><input type="tel" inputmode="tel" autocomplete="tel" placeholder="05X-XXXXXXX" id="phone"></div></div><div class="err" id="err-ph" style="margin-top:-4px;margin-bottom:6px">נא למלא מספר טלפון תקין</div>
+        <div class="row q"><label>ניסיון קודם במלצרות או בבר? <span class="hint qh">ניסיון יתרון אבל לא חובה</span></label>
           <div class="choices"><label><input type="radio" name="exp" id="exp-yes" value="כן"><span>כן</span></label><label><input type="radio" name="exp" value="לא"><span>לא</span></label></div>
           <div class="err" id="err-exp">נא לציין אם יש לכם ניסיון קודם במלצרות או בבר</div>
           <div class="exp-detail"><input type="text" id="expd" placeholder="איפה ולכמה זמן? לדוגמה: בית קפה, שנה"><div class="err" id="err-expd">נא לפרט בקצרה איפה עבדתם ולכמה זמן</div></div></div>
-        <div class="row q"><label>זמינות ל־5-6 משמרות בשבוע?</label>
+        <div class="row q"><label>זמינות ל־5-6 משמרות בשבוע? <span class="hint qh">עדיפות למשרה מלאה</span></label>
           <div class="choices"><label><input type="radio" name="av" value="כן"><span>כן</span></label><label><input type="radio" name="av" value="חלקית"><span>חלקית</span></label></div><div class="err" id="err-av">נא לציין אם אתם זמינים ל־5-6 משמרות בשבוע</div></div>
         <div class="row q"><label>יש לכם הגבלת זמן? <span class="hint qh">לימודים, גיוס, טיסה וכו'</span></label>
           <div class="choices"><label><input type="radio" name="tl" id="tl-yes" value="כן"><span>כן</span></label><label><input type="radio" name="tl" value="לא"><span>לא</span></label></div>
           <div class="err" id="err-tl">נא לציין אם יש לכם הגבלת זמן</div>
           <div class="tl-detail"><input type="text" id="tld" placeholder="מה ועד מתי? לדוגמה: טיסה בסוף מרץ"><div class="err" id="err-tld">נא לפרט מה ההגבלה ועד מתי</div></div></div>
-        <div class="row more"><a href="#" class="olink" onclick="this.closest('form').classList.add('open-notes');document.getElementById('notes').focus();return false">להוסיף הערה?</a><a href="#" class="olink" onclick="this.closest('form').classList.add('open-phone');document.getElementById('phone').focus();return false">לחזור אליכם למספר אחר?</a></div>
+        <div class="row more"><a href="#" class="olink" onclick="this.closest('form').classList.add('open-notes');document.getElementById('notes').focus();return false">להוסיף הערה?</a></div>
         <div class="row nbox"><label>הערות <span class="hint">(לא חובה)</span></label><textarea id="notes"></textarea></div>
-        <div class="row obox"><label>מספר טלפון אחר <span class="hint">(לא חובה)</span></label><input type="tel" placeholder="05X-XXXXXXX" id="phone"></div>
         <button class="submit" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>שליחה בוואטסאפ</button>
                 <div class="small loc">הראיון יתקיים במסעדת 'עיזה בר', רח' משה אהרון 1, השוק התורכי, חיפה.</div>
       </form>
@@ -310,18 +321,17 @@ fbq('track', 'PageView');
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var fn=document.getElementById('fname').value.trim(), ln=document.getElementById('lname').value.trim();
-    var age=document.getElementById('age').value.trim(), ex=val('exp'), d=document.getElementById('expd').value.trim(), av=val('av'), tl=val('tl'), tld=document.getElementById('tld').value.trim();
+    var phr=document.getElementById('phone').value.replace(/\D/g,''), age=document.getElementById('age').value.trim(), ex=val('exp'), d=document.getElementById('expd').value.trim(), av=val('av'), tl=val('tl'), tld=document.getElementById('tld').value.trim();
     document.getElementById('err').textContent=!fn&&!ln?'נא למלא שם פרטי ושם משפחה':!fn?'נא למלא שם פרטי':'נא למלא שם משפחה';
     document.getElementById('err-age').textContent=/^\d{2}$/.test(age)&&+age<18?'המשרה מיועדת לגילאי 18 ומעלה':'נא למלא גיל';
-    var checks=[['err',!(fn&&ln)],['err-age',!/^\d{2}$/.test(age)||+age<18],['err-exp',!ex],['err-expd',ex==='כן'&&!d],['err-av',!av],['err-tl',!tl],['err-tld',tl==='כן'&&!tld]];
+    var checks=[['err',!(fn&&ln)],['err-age',!/^\d{2}$/.test(age)||+age<18],['err-ph',!/^0\d{8,9}$/.test(phr.replace(/^972/,'0'))],['err-exp',!ex],['err-expd',ex==='כן'&&!d],['err-av',!av],['err-tl',!tl],['err-tld',tl==='כן'&&!tld]];
     var first=null;
     checks.forEach(function(c){var el=document.getElementById(c[0]);el.style.display=c[1]?'block':'none';if(c[1]&&!first)first=el;});
     if(first){first.parentNode.scrollIntoView({behavior:'smooth',block:'center'});return;}
     var lines=['הי, אשמח להגיע לראיון עבודה בעיזה בר.',''];
     lines.push('*שם:* '+fn+' '+ln);
     lines.push('*גיל:* '+age);
-    var ph=document.getElementById('phone').value.trim();
-    if(ph) lines.push('*טלפון אחר:* '+ph);
+    var p0=phr.replace(/^972/,'0'); lines.push('*טלפון:* +972'+p0.slice(1));
     lines.push('*ניסיון קודם:* '+ex+(ex==='כן'&&d?' - '+d:''));
     lines.push('*זמינות ל־5-6 משמרות:* '+av);
     lines.push('*הגבלת זמן:* '+tl+(tl==='כן'&&tld?' - '+tld:''));

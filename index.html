@@ -195,6 +195,8 @@
   .apply .row.q > .choices { height:40px; box-sizing:border-box; padding:4px; background:#e4e4e4; border:none; }
   .apply .row.q > .choices label { height:32px; color:#555; }
   .apply .row.q > .choices label:has(input:checked) { color:#fff; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+  .apply .row.q.role > label { flex:0 0 100%; margin-bottom:6px; }
+  .apply .row.q.role > .choices { flex:0 0 100%; width:100%; }
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -293,6 +295,8 @@ fbq('track', 'PageView');
       <form class="form" id="f">
         <div class="row two"><div><label>שם פרטי</label><input type="text" id="fname"></div><div><label>שם משפחה</label><input type="text" id="lname"></div><div class="age"><label style="white-space:nowrap">גיל <span class="hint" style="font-size:9pt"><bdi dir="ltr">+18</bdi></span></label><input type="text" inputmode="numeric" maxlength="2" id="age"></div></div><div class="err" id="err" style="margin-top:-4px;margin-bottom:6px">נא למלא שם פרטי ושם משפחה</div><div class="err" id="err-age" style="margin-top:-4px;margin-bottom:6px">נא למלא גיל</div>
         <div class="row two"><div><label>טלפון</label><input type="tel" inputmode="tel" autocomplete="tel" placeholder="05X-XXXXXXX" id="phone"></div></div><div class="err" id="err-ph" style="margin-top:-4px;margin-bottom:6px">נא למלא מספר טלפון תקין</div>
+        <div class="row q role"><label>לאיזה תפקיד?</label>
+          <div class="choices"><label><input type="radio" name="role" value="מלצרות/בר"><span>מלצרות/בר</span></label><label><input type="radio" name="role" value="ניהול משמרת"><span>ניהול משמרת</span></label></div><div class="err" id="err-role">נא לבחור תפקיד</div></div>
         <div class="row q"><label>ניסיון קודם במלצרות או בבר? <span class="hint qh">ניסיון יתרון אבל לא חובה</span></label>
           <div class="choices"><label><input type="radio" name="exp" id="exp-yes" value="כן"><span>כן</span></label><label><input type="radio" name="exp" value="לא"><span>לא</span></label></div>
           <div class="err" id="err-exp">נא לציין אם יש לכם ניסיון קודם במלצרות או בבר</div>
@@ -321,14 +325,15 @@ fbq('track', 'PageView');
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var fn=document.getElementById('fname').value.trim(), ln=document.getElementById('lname').value.trim();
-    var phr=document.getElementById('phone').value.replace(/\D/g,''), age=document.getElementById('age').value.trim(), ex=val('exp'), d=document.getElementById('expd').value.trim(), av=val('av'), tl=val('tl'), tld=document.getElementById('tld').value.trim();
+    var role=val('role'), phr=document.getElementById('phone').value.replace(/\D/g,''), age=document.getElementById('age').value.trim(), ex=val('exp'), d=document.getElementById('expd').value.trim(), av=val('av'), tl=val('tl'), tld=document.getElementById('tld').value.trim();
     document.getElementById('err').textContent=!fn&&!ln?'נא למלא שם פרטי ושם משפחה':!fn?'נא למלא שם פרטי':'נא למלא שם משפחה';
     document.getElementById('err-age').textContent=/^\d{2}$/.test(age)&&+age<18?'המשרה מיועדת לגילאי 18 ומעלה':'נא למלא גיל';
-    var checks=[['err',!(fn&&ln)],['err-age',!/^\d{2}$/.test(age)||+age<18],['err-ph',!/^0\d{8,9}$/.test(phr.replace(/^972/,'0'))],['err-exp',!ex],['err-expd',ex==='כן'&&!d],['err-av',!av],['err-tl',!tl],['err-tld',tl==='כן'&&!tld]];
+    var checks=[['err',!(fn&&ln)],['err-age',!/^\d{2}$/.test(age)||+age<18],['err-ph',!/^0\d{8,9}$/.test(phr.replace(/^972/,'0'))],['err-role',!role],['err-exp',!ex],['err-expd',ex==='כן'&&!d],['err-av',!av],['err-tl',!tl],['err-tld',tl==='כן'&&!tld]];
     var first=null;
     checks.forEach(function(c){var el=document.getElementById(c[0]);el.style.display=c[1]?'block':'none';if(c[1]&&!first)first=el;});
     if(first){first.parentNode.scrollIntoView({behavior:'smooth',block:'center'});return;}
     var lines=['הי, אשמח להגיע לראיון עבודה בעיזה בר.',''];
+    lines.push('*תפקיד:* '+role);
     lines.push('*שם:* '+fn+' '+ln);
     lines.push('*גיל:* '+age);
     var p0=phr.replace(/^972/,'0'); lines.push('*טלפון:* +972'+p0.slice(1));

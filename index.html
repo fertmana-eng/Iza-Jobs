@@ -242,7 +242,7 @@ fbq('track', 'PageView');
       <h2>היקף משרה ושעות</h2>
       <ul>
         <li>המקום פתוח שבעה ימים בשבוע.</li>
-        <li>משרה מלאה: <span class="ltr">5-6</span> משמרות בשבוע, עדיפות לכמה שיותר.</li>
+        <li><span class="ltr">4-6</span> משמרות בשבוע, עדיפות לכמה שיותר.</li>
         <li>משמרת הפתיחה מתחילה ב-<span class="ltr">16:00</span>.</li>
         <li>סגירה משוערת: באזור <span class="ltr">01:30-02:00</span> באמצע השבוע, ובאזור <span class="ltr">02:30-03:00</span> בחמישי ושישי, לפי העומס במשמרת.</li>
       </ul>
@@ -301,8 +301,8 @@ fbq('track', 'PageView');
           <div class="choices"><label><input type="radio" name="exp" id="exp-yes" value="כן"><span>כן</span></label><label><input type="radio" name="exp" value="לא"><span>לא</span></label></div>
           <div class="err" id="err-exp">נא לציין אם יש לכם ניסיון קודם במלצרות או בבר</div>
           <div class="exp-detail"><input type="text" id="expd" placeholder="איפה ולכמה זמן? לדוגמה: בית קפה, שנה"><div class="err" id="err-expd">נא לפרט בקצרה איפה עבדתם ולכמה זמן</div></div></div>
-        <div class="row q"><label>זמינות ל־5-6 משמרות בשבוע? <span class="hint qh">עדיפות למשרה מלאה</span></label>
-          <div class="choices"><label><input type="radio" name="av" value="כן"><span>כן</span></label><label><input type="radio" name="av" value="חלקית"><span>חלקית</span></label></div><div class="err" id="err-av">נא לציין אם אתם זמינים ל־5-6 משמרות בשבוע</div></div>
+        <div class="row q"><label>זמינות ל־4-6 משמרות בשבוע? <span class="hint qh">עדיפות לכמה שיותר משמרות</span></label>
+          <div class="choices"><label><input type="radio" name="av" value="כן"><span>כן</span></label><label><input type="radio" name="av" value="חלקית"><span>חלקית</span></label></div><div class="err" id="err-av">נא לציין אם אתם זמינים ל־4-6 משמרות בשבוע</div></div>
         <div class="row q"><label>יש לכם הגבלת זמן? <span class="hint qh">לימודים, גיוס, טיסה וכו'</span></label>
           <div class="choices"><label><input type="radio" name="tl" id="tl-yes" value="כן"><span>כן</span></label><label><input type="radio" name="tl" value="לא"><span>לא</span></label></div>
           <div class="err" id="err-tl">נא לציין אם יש לכם הגבלת זמן</div>
@@ -338,7 +338,7 @@ fbq('track', 'PageView');
     lines.push('*גיל:* '+age);
     var p0=phr.replace(/^972/,'0'); lines.push('*טלפון:* +972'+p0.slice(1));
     lines.push('*ניסיון קודם:* '+ex+(ex==='כן'&&d?' - '+d:''));
-    lines.push('*זמינות ל־5-6 משמרות:* '+av);
+    lines.push('*זמינות ל־4-6 משמרות:* '+av);
     lines.push('*הגבלת זמן:* '+tl+(tl==='כן'&&tld?' - '+tld:''));
     var n=document.getElementById('notes').value.trim(); if(n) lines.push('*הערות:* '+n);
     var go='https://wa.me/972587460202?text='+encodeURIComponent(lines.join('\n'));
